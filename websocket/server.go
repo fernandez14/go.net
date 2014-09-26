@@ -82,7 +82,7 @@ func (s Server) serveWebSocket(w http.ResponseWriter, req *http.Request) {
 	defer rwc.Close()
 	conn, err := newServerConn(rwc, buf, req, &s.Config, s.Handshake)
 	if err != nil {
-		panic(err)
+		//panic(err)
 		//return
 	}
 	if conn == nil {
@@ -110,6 +110,6 @@ func checkOrigin(config *Config, req *http.Request) (err error) {
 
 // ServeHTTP implements the http.Handler interface for a WebSocket
 func (h Handler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
-	s := Server{Handler: h, Handshake: checkOrigin}
+	s := Server{Handler: h}
 	s.serveWebSocket(w, req)
 }
