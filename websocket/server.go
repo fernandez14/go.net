@@ -82,6 +82,7 @@ func (s Server) serveWebSocket(w http.ResponseWriter, req *http.Request) {
 	defer rwc.Close()
 	conn, err := newServerConn(rwc, buf, req, &s.Config, s.Handshake)
 	if err != nil {
+		panic(err)
 		return
 	}
 	if conn == nil {
